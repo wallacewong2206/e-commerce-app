@@ -1,12 +1,16 @@
 import { Card, Row, Col, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { removeFromCart } from "../feature/cart/cartSlice";
+import { addToCart, removeFromCart } from "../feature/cart/cartSlice";
 
 export default function CartItem({ item }) {
     const dispatch = useDispatch();
 
-    function removeItem() {
-        dispatch(removeFromCart(item)); // Dispatch remove action
+    function handleAdd() {
+        dispatch(addToCart(item)); // Increase quantity
+    }
+
+    function handleRemove() {
+        dispatch(removeFromCart(item)); // Decrease quantity
     }
 
     return (
@@ -25,9 +29,15 @@ export default function CartItem({ item }) {
                         <Card.Text>{item.description}</Card.Text>
                         <p>Price: RM{item.price.substring(2)}</p>
                         <p>Quantity: {item.amount}</p>
-                        <Button variant="danger" onClick={removeItem}>
-                            Remove 1
-                        </Button>
+                        <div className="d-flex align-items-center">
+                            <Button variant="danger" onClick={handleRemove} className="me-2">
+                                -
+                            </Button>
+                            <span>{item.amount}</span>
+                            <Button variant="primary" onClick={handleAdd} className="ms-2">
+                                +
+                            </Button>
+                        </div>
                     </Col>
                 </Row>
             </Card.Body>

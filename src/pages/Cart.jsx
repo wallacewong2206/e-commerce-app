@@ -4,10 +4,12 @@ import CartItem from "../components/CartItem";
 
 export default function Cart() {
     const cart = useSelector((state) => state.cart);
-    let subtotal = 0;
-    cart.forEach((item) => {
-        subtotal += parseInt(item.price.substring(2)) * item.amount;
-    });
+
+    // Calculate subtotal dynamically
+    const subtotal = cart.reduce(
+        (total, item) => total + parseInt(item.price.substring(2)) * item.amount,
+        0
+    );
 
     return (
         <Container>
