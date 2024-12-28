@@ -6,7 +6,7 @@ export default function Cart() {
     const cart = useSelector((state) => state.cart);
     let subtotal = 0;
     cart.forEach((item) => {
-        subtotal += parseInt(item.price.substring(2));
+        subtotal += parseInt(item.price.substring(2)) * item.amount;
     });
 
     return (

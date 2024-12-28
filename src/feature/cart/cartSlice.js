@@ -8,6 +8,7 @@ const cartSlice = createSlice({
             const itemIndex = state.findIndex(
                 (item) => item.id === action.payload.id
             );
+
             if (itemIndex >= 0) {
             state[itemIndex].amount += 1;
             } else {
