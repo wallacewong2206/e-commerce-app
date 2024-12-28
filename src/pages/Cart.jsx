@@ -5,8 +5,8 @@ import CartItem from "../components/CartItem";
 export default function Cart() {
     const cart = useSelector((state) => state.cart);
 
-    // Calculate subtotal dynamically
-    const subtotal = cart.reduce(
+    // Calculate total dynamically
+    const total = cart.reduce(
         (total, item) => total + parseInt(item.price.substring(2)) * item.amount,
         0
     );
@@ -17,7 +17,7 @@ export default function Cart() {
             {cart.map((item, index) => (
                 <CartItem key={index} item={item} />
             ))}
-            <h4>Subtotal: RM{subtotal}</h4>
+            <h4 className="mt-4">Total: <strong>RM{total}</strong></h4>
         </Container>
     );
 }

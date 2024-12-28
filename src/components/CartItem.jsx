@@ -13,6 +13,9 @@ export default function CartItem({ item }) {
         dispatch(removeFromCart(item)); // Decrease quantity
     }
 
+    // Calculate subtotal for this item
+    const itemSubtotal = parseInt(item.price.substring(2)) * item.amount;
+
     return (
         <Card className="mb-2">
             <Card.Body>
@@ -29,6 +32,7 @@ export default function CartItem({ item }) {
                         <Card.Text>{item.description}</Card.Text>
                         <p>Price: RM{item.price.substring(2)}</p>
                         <p>Quantity: {item.amount}</p>
+                        <p><strong>Subtotal: RM{itemSubtotal}</strong></p>
                         <div className="d-flex align-items-center">
                             <Button variant="danger" onClick={handleRemove} className="me-2">
                                 -
